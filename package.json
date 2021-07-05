@@ -1,5 +1,5 @@
 {
-  "name": "react-tracking",
+  "name": "@gurukumparan/react-tracking",
   "version": "8.1.0",
   "description": "Declarative tracking for React apps.",
   "keywords": [
@@ -10,10 +10,10 @@
     "react",
     "tracking"
   ],
-  "homepage": "https://github.com/nytimes/react-tracking",
+  "homepage": "https://github.com/kumparan/react-tracking",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nytimes/react-tracking"
+    "url": "git+https://github.com/kumparan/react-tracking"
   },
   "license": "Apache-2.0",
   "author": "Jeremy Gayed <https://github.com/tizmagik>",
