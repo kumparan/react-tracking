@@ -15,7 +15,7 @@ const testState = { booleanState: true };
 
 describe('e2e', () => {
   // eslint-disable-next-line global-require
-  const { default: track, useTracking } = require('../');
+  const { default: track, useTracking } = require('..');
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -779,11 +779,6 @@ describe('e2e', () => {
         this.state = {};
       }
 
-      async executeAction() {
-        const data = await this.handleAsyncAction();
-        this.setState({ data });
-      }
-
       @track((props, state, methodArgs, [{ value }, err]) => {
         return (
           !err && {
@@ -795,6 +790,11 @@ describe('e2e', () => {
       })
       handleAsyncAction() {
         return Promise.resolve(this.message);
+      }
+
+      async executeAction() {
+        const data = await this.handleAsyncAction();
+        this.setState({ data });
       }
 
       render() {
@@ -826,15 +826,6 @@ describe('e2e', () => {
         this.state = {};
       }
 
-      async executeAction() {
-        try {
-          const data = await this.handleAsyncAction();
-          this.setState({ data });
-        } catch (error) {
-          this.setState({ data: error });
-        }
-      }
-
       // eslint-disable-next-line no-unused-vars
       @track((props, state, methodArgs, [{ value }, err]) => {
         return (
@@ -846,6 +837,15 @@ describe('e2e', () => {
       })
       handleAsyncAction() {
         return Promise.reject(this.message);
+      }
+
+      async executeAction() {
+        try {
+          const data = await this.handleAsyncAction();
+          this.setState({ data });
+        } catch (error) {
+          this.setState({ data: error });
+        }
       }
 
       render() {

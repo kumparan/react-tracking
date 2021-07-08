@@ -1,6 +1,6 @@
 <p align="center"><img src="https://cdn-images-1.medium.com/max/1600/1*DKS5pYfsAz-H45myvnWWVw.gif" style="max-width:75%;"></p>
 
-# react-tracking [![npm version](https://badge.fury.io/js/react-tracking.svg)](https://badge.fury.io/js/react-tracking)
+# react-tracking [![npm version](https://badge.fury.io/js/%40gurukumparan%2Freact-tracking.svg)](https://badge.fury.io/js/%40gurukumparan%2Freact-tracking)
 
 - React specific tracking library, usable as a higher-order component (as `@decorator` or directly), or as a React Hook
 - Compartmentalize tracking concerns to individual components, avoid leaking across the entire app
@@ -29,9 +29,9 @@ Both `@track()` and `useTracking()` expect two arguments, `trackingData` and `op
 
 - `trackingData` represents the data to be tracked (or a function returning that data)
 - `options` is an optional object that accepts three properties (the object passed to the decorator also accepts a fourth `forwardRef` property):
-  - `dispatch`, which is a function to use instead of the default dispatch behavior. See the section on custom `dispatch()` [below](https://github.com/nytimes/react-tracking#custom-optionsdispatch-for-tracking-data).
+  - `dispatch`, which is a function to use instead of the default dispatch behavior. See the section on custom `dispatch()` [below](https://github.com/kumparan/react-tracking#custom-optionsdispatch-for-tracking-data).
   - `dispatchOnMount`, when set to `true`, dispatches the tracking data when the component mounts to the DOM. When provided as a function will be called in a useEffect on the component's initial render with all of the tracking context data as the only argument.
-  - `process`, which is a function that can be defined once on some top-level component, used for selectively dispatching tracking events based on each component's tracking data. See more details [below](https://github.com/nytimes/react-tracking#top-level-optionsprocess).
+  - `process`, which is a function that can be defined once on some top-level component, used for selectively dispatching tracking events based on each component's tracking data. See more details [below](https://github.com/kumparan/react-tracking#top-level-optionsprocess).
   - `forwardRef` (decorator/HoC only), when set to `true`, adding a ref to the wrapped component will actually return the instance of the underlying component. Default is `false`.
 
 #### `tracking` prop
@@ -75,7 +75,7 @@ const FooPage = () => {
 };
 ```
 
-The `useTracking` hook returns an object with the same `getTrackingData()` and `trackEvent()` methods that are provided as `props.tracking` when wrapping with the `@track()` decorator/HoC (more info about the decorator can be found [below](https://github.com/nytimes/react-tracking#usage-as-a-decorator)). It also returns an additional property on that object: a `<Track />` component that can be returned as the root of your component's sub-tree to pass any new contextual data to its children.
+The `useTracking` hook returns an object with the same `getTrackingData()` and `trackEvent()` methods that are provided as `props.tracking` when wrapping with the `@track()` decorator/HoC (more info about the decorator can be found [below](https://github.com/kumparan/react-tracking#usage-as-a-decorator)). It also returns an additional property on that object: a `<Track />` component that can be returned as the root of your component's sub-tree to pass any new contextual data to its children.
 
 > Note that in most cases you would wrap the markup returned by your component with `<Track />`. This will merge a new tracking context and make it available to all child components. The only time you _wouldn't_ wrap your returned markup with `<Track />` is if you're on some leaf component and don't have any more child components that need tracking info.
 
@@ -493,7 +493,7 @@ This library simply merges the tracking data objects together (as it flows throu
 
 You can get the type definitions for React Tracking from DefinitelyTyped using `@types/react-tracking`. For an always up-to-date example of syntax, you should consult [the react-tracking type tests](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-tracking/test/react-tracking-with-types-tests.tsx).
 
-### PropType support
+### PropType Support
 
 The `props.tracking` PropType is exported for use, if desired:
 
@@ -510,3 +510,7 @@ Alternatively, if you want to just silence proptype errors when using [eslint re
   }
 }
 ```
+
+### Old Browsers Support
+
+Going forward from version `9.x`, we do not bundle `core-js` (ES6 polyfills) anymore. To support old browsers, please add [`core-js`](https://github.com/zloirock/core-js) to your project.

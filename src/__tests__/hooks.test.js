@@ -16,7 +16,7 @@ const testState = { booleanState: true };
 
 describe('hooks', () => {
   // eslint-disable-next-line global-require
-  const { default: track, useTracking } = require('../');
+  const { default: track, useTracking } = require('..');
 
   beforeEach(() => {
     jest.clearAllMocks();
